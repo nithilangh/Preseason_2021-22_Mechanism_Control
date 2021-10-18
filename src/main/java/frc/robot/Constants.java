@@ -25,5 +25,14 @@ public final class Constants {
         public static double FlyWheelRadius = 2.5;
 
         public static double FlyWheelCircumference = 2.5 * Math.PI;
+        public static double FlyWheelCircumferenceMeters = FlyWheelCircumference / 39.37;
+    }
+
+    public static final class JoystickAxis {
+        public static int YAxis = 1;
+    }
+
+    public static final class USBOrder {
+        public static final int ZERO = 0;
     }
 }

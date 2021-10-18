@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -29,12 +30,15 @@ public class FlyWheel extends SubsystemBase {
   }
 
   public void RunFlyWheel(double _drivePower) {
-    _flyWheelTalon.set(_drivePower);
+    _flyWheelTalon.set(ControlMode.PercentOutput, _drivePower);
   }
 
   // Returns velocity in ticks / 100ms
   public double getFlyWheelVelocity() {
-    return _flyWheelTalon.getSelectedSensorVelocity();
+    // returns velocity in meters per second
+    double ticksPerSecond = _flyWheelTalon.getSelectedSensorVelocity() * 10;
+    double velocity = ticksPerSecond * Constants.Robot.FlyWheelCircumferenceMeters / 4096;
+    return velocity;
   }
 
 }

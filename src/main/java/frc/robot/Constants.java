@@ -16,6 +16,8 @@ public final class Constants {
 
     public static final class MotorPorts {
         public static final int FlyWheelPort = 14;
+        public static final int IntakePort = 10;
+        public static final int GatePort = 7;
     }
 
     public static final class Robot {

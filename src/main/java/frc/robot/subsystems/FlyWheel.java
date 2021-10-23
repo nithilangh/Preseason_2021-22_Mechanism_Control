@@ -14,12 +14,18 @@ import frc.robot.Constants;
 public class FlyWheel extends SubsystemBase {
   /** Creates a new FlyWheel. */
   WPI_TalonSRX _flyWheelTalon;
+  WPI_TalonSRX _intakeTalon;
+  WPI_TalonSRX _gateTalon;
 
 
   public FlyWheel() {
     _flyWheelTalon = new WPI_TalonSRX(Constants.MotorPorts.FlyWheelPort);
+    _intakeTalon = new WPI_TalonSRX(Constants.MotorPorts.IntakePort);
+    _gateTalon = new WPI_TalonSRX(Constants.MotorPorts.GatePort);
 
     _flyWheelTalon.configFactoryDefault();
+    _intakeTalon.configFactoryDefault();
+    _gateTalon.configFactoryDefault();
 
     _flyWheelTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
   }
@@ -29,9 +35,18 @@ public class FlyWheel extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void RunFlyWheel(double _drivePower) {
-    _flyWheelTalon.set(ControlMode.PercentOutput, _drivePower);
+  public void runFlyWheel(double drivePower) {
+    _flyWheelTalon.set(drivePower);
   }
+
+  public void feedShooter(double feedSpeed) {
+    _gateTalon.set(feedSpeed);
+  }
+
+  public void intakeBalls(double intakeSpeed) {
+    _intakeTalon.set(intakeSpeed);
+  }
+
 
   // Returns velocity in ticks / 100ms
   public double getFlyWheelVelocity() {

@@ -4,27 +4,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.FlyWheel;
 
-public class SpinFlyWheel extends CommandBase {
-  /** Creates a new SpinFlyWheel. */
+public class FeedShooter extends CommandBase {
+  /** Creates a new FeedShooter. */
+
   FlyWheel _flyWheel;
 
-  Joystick _joystick;
-
-
-
-  public SpinFlyWheel(FlyWheel flw, Joystick js) {
+  public FeedShooter(FlyWheel flw) {
     // Use addRequirements() here to declare subsystem dependencies.
+
     _flyWheel = flw;
-
-    _joystick = js;
-
-
-
     addRequirements(_flyWheel);
   }
 
@@ -34,12 +25,7 @@ public class SpinFlyWheel extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    double speed = _joystick.getRawAxis(Constants.JoystickAxis.YAxis);
-
-    _flyWheel.runFlyWheel(speed);
-
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override

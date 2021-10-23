@@ -9,21 +9,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.FlyWheel;
 
-public class SpinFlyWheel extends CommandBase {
-  /** Creates a new SpinFlyWheel. */
-  FlyWheel _flyWheel;
+public class RunFlyWheel extends CommandBase {
+  /** Creates a new RunFlyWheel. */
 
+  FlyWheel _flyWheel;
   Joystick _joystick;
 
-
-
-  public SpinFlyWheel(FlyWheel flw, Joystick js) {
+  public RunFlyWheel(FlyWheel flw, Joystick js) {
     // Use addRequirements() here to declare subsystem dependencies.
     _flyWheel = flw;
 
     _joystick = js;
-
-
 
     addRequirements(_flyWheel);
   }
@@ -35,9 +31,18 @@ public class SpinFlyWheel extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = _joystick.getRawAxis(Constants.JoystickAxis.YAxis);
+    double _flyWheelSpeed = _joystick.getRawAxis(Constants.JoystickAxis.YAxis);
 
-    _flyWheel.runFlyWheel(speed);
+    _flyWheel.runFlyWheel(_flyWheelSpeed);
+
+    _flyWheel.intakeBalls(0.8);
+
+    if(_joystick.getRawButton(1) == true) {
+      _flyWheel.feedShooter(0.3);
+    }
+    else {
+      _flyWheel.feedShooter(0.0);
+    }
 
   }
 

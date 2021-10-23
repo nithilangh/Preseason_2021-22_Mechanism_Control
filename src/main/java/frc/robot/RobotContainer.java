@@ -11,6 +11,7 @@ import frc.robot.Constants.JoystickAxis;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FeedShooter;
 import frc.robot.commands.IntakeBalls;
+import frc.robot.commands.RunFlyWheel;
 import frc.robot.commands.SpinFlyWheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FlyWheel;
@@ -38,6 +39,8 @@ public class RobotContainer {
 
   private final FeedShooter _feedShooter;
 
+  private final RunFlyWheel _runFlyWheel;
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -51,7 +54,9 @@ public class RobotContainer {
 
     _feedShooter = new FeedShooter(_flyWheel);
 
-    _flyWheel.setDefaultCommand(_spinFlyWheel);
+    _runFlyWheel = new RunFlyWheel(_flyWheel, _joystick);
+
+    _flyWheel.setDefaultCommand(_runFlyWheel);
 
 
     configureButtonBindings();
